@@ -1,18 +1,15 @@
-document.getElementById('detonate').addEventListener('click', () => {
-    const bomb = document.getElementById('bomb');
-    const explosion = document.getElementById('explosion');
+document.addEventListener("DOMContentLoaded", function() {
+    let timerElement = document.getElementById("timer");
+    let explosionElement = document.getElementById("explosion");
+    let countdown = 5;
 
-    // Hide the bomb
-    bomb.style.display = 'none';
-
-    // Show and animate the explosion
-    explosion.style.transform = 'scale(3)';
-    explosion.style.opacity = '1';
-
-    // Reset the explosion after animation
-    setTimeout(() => {
-        explosion.style.transform = 'scale(0)';
-        explosion.style.opacity = '0';
-        bomb.style.display = 'block';
+    let interval = setInterval(() => {
+        countdown--;
+        timerElement.textContent = countdown;
+        if (countdown <= 0) {
+            clearInterval(interval);
+            timerElement.style.display = "none";
+            explosionElement.style.display = "flex";
+        }
     }, 1000);
 });

@@ -1,36 +1,63 @@
 body {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    background-color: #333;
     margin: 0;
-    overflow: hidden;
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
-#bomb {
-    width: 50px;
-    height: 50px;
-    background-color: black;
-    border-radius: 50%;
-    position: absolute;
+.bomb-container {
+    position: relative;
+    text-align: center;
 }
 
-#explosion {
+.bomb {
+    position: relative;
     width: 100px;
     height: 100px;
-    background-color: orange;
+    background-color: #333;
     border-radius: 50%;
-    position: absolute;
-    transform: scale(0);
-    opacity: 0;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.fuse {
+    position: absolute;
+    top: -20px;
+    width: 10px;
+    height: 40px;
+    background-color: #999;
+    animation: burn 5s linear forwards;
+}
+
+@keyframes burn {
+    0% { height: 40px; background-color: #999; }
+    100% { height: 0; background-color: red; }
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.explosion {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(255,153,0,1) 50%, rgba(255,255,0,1) 100%);
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: explode 1s forwards;
+}
+
+@keyframes explode {
+    0% { width: 0; height: 0; opacity: 1; }
+    100% { width: 200px; height: 200px; opacity: 0; }
 }
